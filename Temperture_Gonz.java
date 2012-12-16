@@ -60,7 +60,7 @@ class Temperature
   {
     if(myScale.equals("F")){
       myDegrees = ((myDegrees * (5/9.0) + 32));
-    }  // so it compiles
+    }
     return this;
     
   }
@@ -82,11 +82,12 @@ class Temperature
   {
     
     if(scale.equals("F"))
-      if((((degrees-32) * 5/9) + 273.15) >= 0)
+      if((degrees* 5/9 - 32 ) + 273.15 >= 0)
         return true;
     if(scale.equals("C"))
       if((degrees + 273.15) >= 0)
         return true;
+    
     return false;
   }
   public String toString(){
