@@ -1,12 +1,13 @@
 //Brandon Gonzalez
-//
+//FinalPrep-asg3
 import java.util.Scanner;
 
 public class Temperture_Gonz
 {
     public static void main(String[] args) {
+      //Swapped IO with Scanner
       Scanner myScanner = new Scanner(System.in);
-      
+      //Code from 19 
       System.out.println("Enter temperature scale: ");
       String scale = myScanner.nextLine();
       System.out.println("Enter Temperature: ");
