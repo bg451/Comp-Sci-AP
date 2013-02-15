@@ -1,30 +1,22 @@
 import java.util.ArrayList;
-
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import java.util.Scanner; // for input
 
 // New sound stuff
 import javax.sound.sampled.*;
 import java.io.File;
 
-
+//TODO: Make the files local
 /**
-  Specifies the header for methods common to all animals.
-*/
+ * @author Brandon Gonzalez <brandon.gonzalez.451@gmail.com>
+ */
+
 interface Speakable {
-	/**
-		All methods are public in an interface. No need to write public.
-	*/
 	void speak();
 }
-
-/**
-  A common animal that has a deep throaty speaking sound
-*/
 
 class Animal implements Speakable {
 	String name;
@@ -80,7 +72,7 @@ class Cat implements Speakable {
 }
 
 /**
-  Tests out the Speakable hierarchy by having those creatures speak.
+*  Tests out the Speakable hierarchy by having those creatures speak.
 */
 public class InterfaceZoo_gonz {
 
@@ -113,6 +105,7 @@ public class InterfaceZoo_gonz {
 	 */
 	public static void wait(int numSeconds) {
 		try {
+
 			Thread.sleep(numSeconds * 1000); // it wants milliSeconds
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -120,13 +113,14 @@ public class InterfaceZoo_gonz {
 	}
 
 	/**
-	  Test driver. Creates animals, has them speak, puts them in ArrayList
-	  and has them speak. great fun.
+	*  Test driver. Creates animals, has them speak, puts them in ArrayList
+	*  and has them speak. great fun.
 	*/
 	public static void main(String[] args) {
 		ArrayList<Speakable> zoo = new ArrayList<Speakable>();
 		Speakable horse = new Horse();
 		Speakable rover  = new Dog();
+		zoo.add(horse);
 
 		// Rover speaks.
 		rover.speak();
@@ -168,7 +162,6 @@ public class InterfaceZoo_gonz {
 		System.out.println("All animals spoke, hit <Enter> to end program");
 		scan.nextLine();
 
-		// This will end our program, even if we have a graphical window
 		System.exit(0);
 	} // end main
 }// end class Interfacezoo_gonz
