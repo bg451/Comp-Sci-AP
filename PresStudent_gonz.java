@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
 
 interface Dateable
 {
@@ -27,9 +29,12 @@ class Student extends Person {
   }
 }
 
-public class PresStudent_gonz extends Student implements Dateable {
+public class PresStudent_gonz extends Student implements Dateable, Comparable<PresStudent_gonz> {
   private Color hairColor;
 
+  public int compareTo(PresStudent_gonz o) {
+    return ((this.getName()).compareTo(o.getName()));
+  }
   public PresStudent_gonz(String name, int id, Color hairColor) {
     super(name, id);
     this.hairColor=hairColor;
@@ -47,10 +52,22 @@ public class PresStudent_gonz extends Student implements Dateable {
   }
 
   public static void main(String[] args) {
-    PresStudent_gonz tester = new PresStudent_gonz("Swag master", 1337, Color.GREEN);
-    if(tester.askOut(100000))
-      System.out.println("Congrats :D");
+    ArrayList< PresStudent_gonz > girls = new ArrayList< PresStudent_gonz >(5);
+    girls.add(new PresStudent_gonz("Jane", 01, Color.BLUE));
+    girls.add(new PresStudent_gonz("Mary", 02, Color.RED));
+    girls.add(new PresStudent_gonz("Will Ferrel", 03, Color.GREEN));
+    girls.add(new PresStudent_gonz("Jennifer lawrence", 04, Color.GREEN));
+    girls.add(new PresStudent_gonz("If Anne has a will, Anne hathaway", 05, Color.BLACK));
+    Collections.sort(girls);
+    int count = 1;
+    for(PresStudent_gonz girl: girls) {
+      System.out.println(count +") " + girl.getName());
+      count++;
+    }
+    if (girls.get(0).compareTo(girls.get(1)) > 0)
+      System.out.println(girls.get(0).getName());
     else
-      System.out.println("You were rejected but its k you have bellarmine");
+      System.out.println(girls.get(1).getName());
+
   }
 }
