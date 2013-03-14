@@ -23,7 +23,7 @@ public class SequentialTester_gonz {
     if(x == -1)
       System.out.println("Teacher not found!");
     else
-      System.out.println( getNames()[x] + " was found!");
+      System.out.println( getNames()[x] + " was found @ " + x);
   }
   public static String[] getNames() {
     String[] names =  { "Adams", "Amarillas", "Baxter", "Duong","Giraudo",
