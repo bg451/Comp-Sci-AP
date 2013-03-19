@@ -9,13 +9,13 @@ public class SortTester_gonz {
     SelectionSort s = new SelectionSort();
     System.out.println("Enter the size of the array to be sorted:");
     int n = scan.nextInt();
-    int[] a = createRandomArray(n);
+    ArrayList< Integer > a = createRandomArray(n);
     s.sort(a);
     System.out.println("The sorting is complete!");
   }
-  public  static ArrayList< Integer>  createRandomArray(int size) {
+  public  static ArrayList< Integer > createRandomArray(int size) {
     Random r = new Random();
-    ArrayList< Integer > retarray = new ArrayList< Integer > (size);
+    ArrayList< Integer > retarray = new ArrayList< Integer > ();
     for(int i = 0; i < size; i++) {
       retarray.add( r.nextInt(size) );
     }
@@ -32,28 +32,29 @@ public class SortTester_gonz {
  */
 class SelectionSort {
 
-  public int min(ArrayList< Integer > arr, int startIndex) {
-
+  public Integer min(ArrayList< Integer > arr, int startIndex) {
     int min = arr.get(startIndex);
     int x = startIndex;
-    for(int i = startIndex + 1; i < arr.length; i++) {
+    for(int i = startIndex + 1; i < arr.size(); i++) {
+      System.out.println("Looking at "+ i);
+      System.out.println("Min is "+ min);
       if(arr.get(i) < min){
-        min = arr[i];
+        min = arr.get(i);
         x = i;
       }
     }
     return x;
   }
-  public void swap(int[] arr, int i, int j) {
-    int temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
+  public void swap(ArrayList< Integer > input, int i, int j) {
+    int temp = input.get(j);
+    input.set(j, input.get(j-1));
+    input.set(j-1, temp);
   }
-  public void sort(int[] arr) {
-    for(int i = 0; i < arr.length - 1; i++){
+  public void sort(ArrayList< Integer > arr) {
+    for(int i = 0; i < arr.size() - 1; i++){
       //min index
       int j = min(arr, i);
-      //swap5
+      //swap
       swap(arr, i, j);
       for(int swag: arr){
         System.out.printf("%d ", swag);
@@ -64,15 +65,17 @@ class SelectionSort {
 }
 
 class InsertionSort {
-  public void swap(ArrayList< Integer >  arr, int i, int j) {
-    arr.set(i, j);
+  public void swap(ArrayList< Integer >  input, int i, int j) {
+    int temp = input.get(j);
+    input.add(input.get(j), input.get(j-1));
+    input.add(j-1, temp);
   }
 
   private ArrayList< Integer > insertionSort(ArrayList< Integer > input){
 
     int temp;
 
-    for (int i = 1; i < input.length; i++) {
+    for (int i = 1; i < input.size(); i++) {
       for(int j = i ; j > 0 ; j--){
         if(input.get(j) < input.get(j-1)){
           temp = input.get(j);
