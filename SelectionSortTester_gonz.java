@@ -9,13 +9,13 @@ public class SortTester_gonz {
     SelectionSort s = new SelectionSort();
     System.out.println("Enter the size of the array to be sorted:");
     int n = scan.nextInt();
-    int[] a = createRandomArray(n);
+    Comparable[] a = createRandomArray(n);
     s.sort(a);
     System.out.println("The sorting is complete!");
   }
-  public  static ArrayList< Integer>  createRandomArray(int size) {
+  public  static Comparable[]  createRandomArray(int size) {
     Random r = new Random();
-    ArrayList< Integer > retarray = new ArrayList< Integer > (size);
+    Comparable[] retarray = new Comparable[size];
     for(int i = 0; i < size; i++) {
       retarray.add( r.nextInt(size) );
     }
@@ -32,7 +32,7 @@ public class SortTester_gonz {
  */
 class SelectionSort {
 
-  public int min(ArrayList< Integer > arr, int startIndex) {
+  public int min(Comparable[] arr, int startIndex) {
 
     int min = arr.get(startIndex);
     int x = startIndex;

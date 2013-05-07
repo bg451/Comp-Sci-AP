@@ -1,26 +1,28 @@
 //Brandon Gonzalez
-//Sort-Asg1
-import java.util.Scanner;
+//Sort-Asg2: OO Insertion Sort
 import java.util.Random;
 import java.util.ArrayList;
 public class SortTester_gonz {
   public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in);
-    SelectionSort s = new SelectionSort();
-    System.out.println("Enter the size of the array to be sorted:");
-    int n = scan.nextInt();
-    ArrayList< Integer > a = createRandomArray(n);
-    s.sort(a);
-    System.out.println("The sorting is complete!");
+    Comparable[] a = {9, 7, 5, 3, 2, 1}, b  = {9, 7, 5, 3, 2, 1};
+    Comparable[]  c = {1, 10, 9, 5, 8, 3}, d =  {1, 10, 9, 5, 8, 3};
+    SelectionSort s1 = new SelectionSort(a);
+    InsertionSort i1 = new InsertionSort(b);
+    SelectionSort s2 = new SelectionSort(c);
+    InsertionSort i2 = new InsertionSort(d);
+    s1.sort();
+    i1.sort();
+    System.out.println();
+    s2.sort();
+    i2.sort();
   }
-  public  static ArrayList< Integer > createRandomArray(int size) {
-    Random r = new Random();
-    ArrayList< Integer > retarray = new ArrayList< Integer > ();
-    for(int i = 0; i < size; i++) {
-      retarray.add( r.nextInt(size) );
-    }
-    return retarray;
+  //Swap Method that is static for reference in the other classes
+  public static void swap(Comparable[] arr, int i, int j) {
+    Comparable temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
   }
+
 }
 
 /**
@@ -31,59 +33,71 @@ public class SortTester_gonz {
  * needs more cowbell
  */
 class SelectionSort {
+  private Comparable[] arr;
 
-  public Integer min(ArrayList< Integer > arr, int startIndex) {
-    int min = arr.get(startIndex);
+  public SelectionSort(Comparable[] arr) {
+    this.arr = arr;
+  }
+  public int min(Comparable[] arr, int startIndex) {
+    Comparable min = arr[startIndex];
     int x = startIndex;
-    for(int i = startIndex + 1; i < arr.size(); i++) {
-      System.out.println("Looking at "+ i);
-      System.out.println("Min is "+ min);
-      if(arr.get(i) < min){
-        min = arr.get(i);
+    for(int i = startIndex + 1; i < arr.length; i++) {
+      if(arr[i].compareTo(min) < 0) {
+        min = arr[i];
         x = i;
       }
     }
     return x;
   }
-  public void swap(ArrayList< Integer > input, int i, int j) {
-    int temp = input.get(j);
-    input.set(j, input.get(j-1));
-    input.set(j-1, temp);
-  }
-  public void sort(ArrayList< Integer > arr) {
-    for(int i = 0; i < arr.size() - 1; i++){
-      //min index
+  public void sort() {
+    System.out.println("Selection Sort");
+    System.out.println("Original list: " + toString());
+    System.out.println("\nSorting...");
+    for(int i = 0; i < arr.length - 1; i++){
       int j = min(arr, i);
-      //swap
-      swap(arr, i, j);
-      for(int swag: arr){
-        System.out.printf("%d ", swag);
-      }
-      System.out.println();
+      SortTester_gonz.swap(arr, i, j);
+      System.out.println(toString());
     }
+    System.out.println("Sorting is complete!");
+  }
+  public String toString() {
+    String retString = "";
+    for(Comparable swag: arr){
+      retString += swag + " ";
+    }
+    return retString;
   }
 }
-
+/**
+ * sort: Implements an insertion sort algorithm
+ * toString: turns the array into a usable string
+ */
 class InsertionSort {
-  public void swap(ArrayList< Integer >  input, int i, int j) {
-    int temp = input.get(j);
-    input.add(input.get(j), input.get(j-1));
-    input.add(j-1, temp);
+  private Comparable[] input;
+
+  public InsertionSort(Comparable[] arr) {
+    this.input = arr;
   }
 
-  private ArrayList< Integer > insertionSort(ArrayList< Integer > input){
-
+  public void sort(){
+    System.out.println("Insertion Sort ");
     int temp;
 
-    for (int i = 1; i < input.size(); i++) {
+    for (int i = 1; i < input.length; i++) {
       for(int j = i ; j > 0 ; j--){
-        if(input.get(j) < input.get(j-1)){
-          temp = input.get(j);
-          input.add(input.get(j), input.get(j-1));
-          input.add(j-1, temp);
+        if(input[j].compareTo(input[j-1]) < 0) {
+          SortTester_gonz.swap(input, j, j-1);
         }
+        System.out.println(toString());
       }
     }
-    return input;
+    System.out.println("Sorting is complete!");
+  }
+  public String toString() {
+    String retString = "";
+    for(Comparable swag: input)
+      retString += swag + " ";
+    return retString;
+  }
 }
-}
+

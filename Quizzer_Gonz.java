@@ -11,7 +11,7 @@ public class Quizzer_Gonz{
 		Quizzer test = new Quizzer();
 		test.questioner();
 		test.summary();
-		
+
 	}
 }
 class QuizzerFunctions {
@@ -23,7 +23,7 @@ class QuizzerFunctions {
 	//Here is the constructors
 	public QuizzerFunctions() {
 		mcQues1 = "Who was the first president of the US?\na:George Washington\nb: Obama\nc: Romney\nd: Dorian Chan";
-		mcQues2 = "What is the average air velocity of an unladen swallow?\na:10 m/s \nb:12 m/s\nc:14 m/s\nd:Dorian Speed";
+		mcQues2 = "Wha t is the average air velocity of an unladen swallow?\na:10 m/s \nb:12 m/s\nc:14 m/s\nd:Dorian Speed";
 		mcQues3 = "What is the meaning of life?\na:42\nb:52\nc:24\nd:100";
 		mcQues4 = "What is Dorian's 5th period class?\na: Math\nb:Swag theory\nc: Compsci AP/nd:English 2";
 		frQues1 = "What is your favorite color?";
@@ -37,11 +37,11 @@ class QuizzerFunctions {
 	public void getName(String name){
 	  this.name = name;
 	}
-	
+
 	public void pushScore(double value) {
 		score += value;
 	}
-	
+
 	public double getScore() {
 		return score;
 	}
@@ -53,17 +53,17 @@ class QuizzerFunctions {
 			score -= value;
 		}
 	}
-	
+
 	public void pushQuestion(String question) {
 		System.out.println(question);
 	}
-	
+
 	public String getResponse() {
 		Scanner input = new Scanner(System.in);
 		answer = input.nextLine();
 		return answer;
 	}
-	
+
 	public boolean checkAnswer(String input, String answer, int points){
 		int tries = 0;
 		if(input.equals(answer)) {
@@ -71,7 +71,7 @@ class QuizzerFunctions {
 			pushScore();
 		} else {
 			System.out.println("That is incorrect!");
-			
+
 			while(!input.equals(answer) || tries < 3 ) {
 				input = getResponse();
 			}
@@ -87,7 +87,7 @@ class QuizzerFunctions {
 		//Starting of the quiz
 		quiz.pushQuestion("What is your name?");
 		name = getResponse();
-		
+
 		if(name.equals("")) {
 			System.out.println("You didnt enter your name, so you lose a point");
 			quiz.popScore();
@@ -107,18 +107,18 @@ class QuizzerFunctions {
 			//Peanut butter third question time
 			quiz.pushQuestion(mcQues3);
 			quiz.answer3 = quiz.getResponse();
-		
+
 			quiz.checkAnswer(quiz.anwer3, "a");
 		}
 
 		quiz.cls();
-				
+
 		//Question 4
 		quiz.pushQuestion(mcQues4);
 		quiz.answer4 = quiz.getResponse();
 		quiz.checkAnswer(quiz.answer4,"c");
-			
-		//question 5		
+
+		//question 5
 		quiz.pushQuestion(quiz.frQues1);
 		quiz.answer5 = quiz.getResponse();
 		quiz.checkAnswer(quiz.answer5, "blue");
@@ -144,7 +144,7 @@ class QuizzerFunctions {
   public void summary(){
 		System.out.println("You scored a total of " + getScore() + " Out of 6");
 	  System.out.println("Percentage: " + (getScore/6 * 100) + "%");
-	  System.out.printf("Your answers were %s\n%s\n%s\n%s\n%s\n%s\n", answer1, answer2, answer3, answer4, answer5, answer6);   
+	  System.out.printf("Your answers were %s\n%s\n%s\n%s\n%s\n%s\n", answer1, answer2, answer3, answer4, answer5, answer6);
 
   }
 
