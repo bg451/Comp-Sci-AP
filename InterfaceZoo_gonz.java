@@ -32,7 +32,7 @@ class Animal implements Speakable {
 }
 class Horse implements Speakable {
 	public void speak() {
-		System.out.println("Monkey sound goes here");
+		System.out.println("Rolo's tn king? 👑");
 
 		String fileName = "./sound/Horse.wav";
 		AudioClip clip = InterfaceZoo_gonz.getAudioClip(fileName);
